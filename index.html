@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Unit Converter — Dashboard</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="unit converter.css">
+</head>
+<body>
+  <!-- Welcome Screen -->
+<div id="welcome-screen" class="welcome-container">
+    <div class="welcome-box">
+        <img src="assets/LOGO UC.png" alt="Logo" class="welcome-logo">
+        <h1>
+          <span class="gradient-text">UNIT CONVERTER</span>
+        </h1>
+        <p>Convert cepat hasil tepat</p>
+        <button id="startBtn">START</button>
+        <footer class="app-footer1">
+      <small class="muted">Unit Converter Gacor😎</small>
+    </footer>
+    </div>
+</div>
+  <!-- card conversi -->
+  <main class="app">
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo">
+          <img src="assets/LOGO UC.png" class="app-logo" alt="logo">
+        </div>
+        <div>
+          <h1>
+            <span class="gradient-text">UNIT CONVERTER</span>
+          </h1>
+          <p class="muted">Convert cepat hasil tepat</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="clearHistoryBtn" class="btn ghost">Clear History</button>
+        <button id="themeToggle" class="btn ghost">🌙Dark</button>
+      </div>
+      <div class="sound-toggle">
+               <label>
+                <input type="checkbox" id="soundToggle" checked>
+                  sounds
+                </label>
+              </div>
+    </header>
+
+    <section class="grid">
+      <!-- Left: Converter Card -->
+      <article class="card card-primary" id="converterCard" aria-labelledby="converterTitle">
+        <div class="watermark">
+          <img src="assets/LOGO UC.png" class="watermark">
+        </div>
+        <div class="card-header">
+          <h2 id="converterTitle">Konversi Satuan</h2>
+          <p class="muted">Pilih kategori, masukkan nilai, lalu konversi</p>
+        </div>
+        <div class="card-body">
+          <div class="controls">
+            <div class="control">
+            <label>Nilai</label>
+             <div class="number-wrap">
+             <input type="number" id="inputValue" placeholder="Masukkan angka">
+            <div class="spin">
+              <button type="button" class="up">▲</button>
+              <button type="button" class="down">▼</button>
+            </div>
+          </div>
+        </div>
+            <div class="control">
+              <label>Kategori</label>
+              <div class="select-with-icon">
+                <select id="category" onchange="updateUnits()">
+                  <option value="length">📏 Panjang</option>
+                  <option value="weight">⚖️ Berat</option>
+                  <option value="temperature">🌡️ Suhu</option>
+                  <option value="currency">💱 Mata Uang</option>
+                  <option value="time">⏱️ Waktu</option>
+                  <option value="data">💾 Data</option>
+                  <option value="area">📐Luas</option>
+                  <option value="volume">🧊Volume</option>
+                  <option value="speed">🚀Kecepatan</option>
+
+                </select>
+              </div>
+            </div>
+
+            <div class="control row">
+              <div class="small-control">
+                <label>Dari</label>
+                <select id="fromUnit"></select>
+              </div>
+
+              <div class="swap-wrap">
+                <button id="swapBtn" class="btn icon">⇄</button>
+              </div>
+
+              <div class="small-control">
+                <label>Ke</label>
+                <select id="toUnit"></select>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button id="convertBtn" class="btn primary">Konversi</button>
+              <button id="copyBtn" class="btn ghost">Salin Hasil</button>
+            </div>
+          </div>
+          <div class="result-area">
+            <div class="result-card">
+              <div class="result-text" id="result">Hasil akan muncul di sini</div>
+              <div class="result-meta muted" id="rateInfo"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Right: History Card -->
+      <aside class="card card-secondary" id="historyCard" aria-labelledby="historyTitle">
+        <div class="watermark2">
+          <img src="assets/LOGO UC.png" class="watermark2">
+        </div>
+        <div class="card-header">
+          <h2 id="historyTitle">Riwayat Konversi</h2>
+          <p class="muted">3 terakhir disimpan (local)</p>
+        </div>
+
+        <div class="card-body history-body" id="historyList">
+          <!-- riwayat akan di-render di sini -->
+        </div>
+      </aside>
+    </section>
+
+   <!-- ===== FOOTER ===== -->
+<footer class="app-footer">
+  <span>© 2026 Unit Converter</span>
+  <button id="aboutBtn" class="footer-link">ⓘ Tentang</button>
+</footer>
+
+<!-- ===== ABOUT MODAL ===== -->
+<div id="aboutModal" class="modal hidden">
+  <div class="modal-overlay"></div>
+
+  <div class="modal-content">
+    <button id="closeAbout" class="modal-close">✕</button>
+
+    <h2>Tentang Aplikasi</h2>
+    <p class="app-name">Unit Converter</p>
+
+    <p class="desc">
+      Aplikasi konversi satuan yang dirancang untuk membantu perhitungan
+      panjang, berat, suhu, waktu, data, luas, volume, dan kecepatan
+      dengan cepat dan akurat.
+    </p>
+
+    <h3>Developer</h3>
+    <ul class="dev-list">
+      <li>
+        <strong>M. Akril Baharudin Mahfud</strong><br>
+        <span>System & Logic Developer</span>
+      </li>
+      <li>
+        <strong>Rio Fajar Ibanz</strong><br>
+        <span>UI / UX Designer</span>
+      </li>
+    </ul>
+
+    <p class="version">Versi 1.0</p>
+  </div>
+</div>
+
+    
+  </main>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="unit converter.js"></script>
+</body>
+</html>
